@@ -74,6 +74,36 @@
             87.5% {-webkit-mask-size:0    0  ,0    0  ,0   0   ,var(--s),auto}
             100%  {-webkit-mask-size:0    0  ,0    0  ,0   0   ,0   0   ,auto}
         }
+        .content-page {
+            display: none;
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: auto;
+            max-width: 900px;
+        }
+        .header {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 32px;
+            color: #333;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section p {
+            text-align: right;
+        }
+        .section h2 {
+            font-size: 24px;
+            color: #444;
+        }
     </style>
 </head>
 <body>
@@ -86,16 +116,31 @@
     <div class="loader" id="loader"></div>
 </div>
 
+<div class="content-page" id="content-page">
+    <div class="header">
+        <h1>عن المقاطعة</h1>
+    </div>
+    <div class="section">
+        <h2>لماذا يجب أن نقاطع؟</h2>
+        <p>المقاطعة هي وسيلة قوية للتعبير عن الرأي وإحداث تغيير في المجتمع. عندما نستخدم المقاطعة، نوجه رسالة واضحة للشركات أو الحكومات بأننا نرفض ممارسات معينة أو نطالب بحقوقنا بطريقة سلمية وفعّالة.</p>
+    </div>
+    <div class="section">
+        <h2>سلبيات عدم المقاطعة</h2>
+        <p>عندما نختار عدم المقاطعة، قد نفوّت فرصة للمشاركة في تغيير إيجابي. الشركات قد تستمر في ممارساتها الضارة دون رادع، مما يؤدي إلى استمرار الضرر بالمجتمع والبيئة.</p>
+    </div>
+</div>
+
 <script>
     function login() {
         let username = document.getElementById('username').value;
         let password = document.getElementById('password').value;
 
-        if (username === 'AZEZ' && password.length >= 8) {
+        if ((username === 'Sultan' || username === 'Mohammed' || username === 'AZEZ') && password.length >= 8) {
             document.getElementById('loader').style.display = 'block';
             setTimeout(() => {
-                alert('Login Successful!');
                 document.getElementById('loader').style.display = 'none';
+                document.querySelector('.login-container').style.display = 'none';
+                document.getElementById('content-page').style.display = 'block';
             }, 2000); // simulating a loading time of 2 seconds
         } else {
             alert('Invalid login credentials.');
