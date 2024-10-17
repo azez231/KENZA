@@ -45,6 +45,78 @@
             transition: all .8s ease;
         }
 
+        @keyframes expand {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .loading-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .clock {
+            border: 5px solid white;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hour {
+            width: 50%;
+            height: 4px;
+            background-color: white;
+            position: absolute;
+            transform-origin: 100%;
+            animation: rotate-hour 43200s linear infinite;
+        }
+
+        .minute {
+            width: 70%;
+            height: 2px;
+            background-color: white;
+            position: absolute;
+            transform-origin: 100%;
+            animation: rotate-minute 3600s linear infinite;
+        }
+
+        .second {
+            width: 90%;
+            height: 1px;
+            background-color: red;
+            position: absolute;
+            transform-origin: 100%;
+            animation: rotate-second 60s linear infinite;
+        }
+
+        @keyframes rotate-hour {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotate-minute {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotate-second {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         .footer {
             position: absolute;
             bottom: 0;
@@ -88,11 +160,23 @@
         .thank-you-message.visible {
             display: inline-block;
         }
+
     </style>
 </head>
 <body>
 
-<!-- Rest of the page content -->
+<div class="overlay"></div>
+
+<div class="container">
+    <div class="loading-content">
+        <div class="loading-text">Loading...</div>
+        <div class="clock">
+            <div class="hour"></div>
+            <div class="minute"></div>
+            <div class="second"></div>
+        </div>
+    </div>
+</div>
 
 <div class="footer">
     To send some suggestions to support me (<a href="mailto:dearthanks@jamil.com">dearthanks@jamil.com</a>)
