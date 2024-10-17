@@ -3,179 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kenza - Login</title>
+    <title>Kenza</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
             margin: 0;
-            overflow: hidden;
+            padding: 20px;
         }
-        .login-container, .content-page {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
             background-color: #ffffff;
             padding: 20px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            text-align: center;
-            width: 300px;
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            text-align: left;
         }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
         h2 {
             color: #333;
-        }
-        .input-field {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .button {
-            width: 100%;
-            padding: 10px;
-            background-color: #6C63FF;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: #574bfa;
-        }
-        .loader {
-            display: none;
-            width: 48px;
-            height: 48px;
-            background: #d0af03;
-            border-radius: 50%;
-            --c:no-repeat linear-gradient(#000 0 0);
-            --s:15px 15px;
-            -webkit-mask:
-                var(--c) top,
-                var(--c) right,
-                var(--c) bottom,
-                var(--c) left,
-                linear-gradient(#000 0 0);
-            -webkit-mask-composite:xor;
-            mask-composite:exclude;
-            animation: l7 1.5s infinite;
-        }
-        @keyframes l7 {
-            0%    {-webkit-mask-size:0    0  ,0    0  ,0    0  ,0    0  ,auto}
-            12.5% {-webkit-mask-size:var(--s),0    0  ,0    0  ,0    0  ,auto}
-            25%   {-webkit-mask-size:var(--s),var(--s),0    0  ,0    0  ,auto}
-            37.5% {-webkit-mask-size:var(--s),var(--s),var(--s),0    0  ,auto}
-            45%,
-            55%   {-webkit-mask-size:var(--s),var(--s),var(--s),var(--s),auto}
-            62.5% {-webkit-mask-size:0    0  ,var(--s),var(--s),var(--s),auto}
-            75%   {-webkit-mask-size:0    0  ,0    0  ,var(--s),var(--s),auto}
-            87.5% {-webkit-mask-size:0    0  ,0    0  ,0   0   ,var(--s),auto}
-            100%  {-webkit-mask-size:0    0  ,0    0  ,0   0   ,0   0   ,auto}
-        }
-        .content-page {
-            display: none;
-            padding: 20px;
-            font-size: 18px;
-            line-height: 1.6;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 900px;
-            margin: auto;
-        }
-        .header, .footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header h1 {
-            font-size: 32px;
-            color: #333;
-        }
-        .footer a {
-            color: #6C63FF;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-        .section {
-            margin-bottom: 30px;
-        }
-        .section p {
             text-align: right;
         }
-        .section h2 {
-            font-size: 24px;
-            color: #444;
+
+        p {
+            text-align: right;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .return-link {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .return-link a {
+            color: red;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .spacer {
+            margin-bottom: 50px;
+        }
+
+        .spacer-large {
+            margin-bottom: 100px;
         }
     </style>
 </head>
 <body>
 
-<div class="login-container" id="login-container">
-    <h2>Kenza Login</h2>
-    <input type="text" id="username" class="input-field" placeholder="Username">
-    <input type="password" id="password" class="input-field" placeholder="Password" minlength="8">
-    <button class="button" onclick="login()">SIGN IN</button>
-    <div class="loader" id="loader"></div>
+<div class="container">
+    <div class="return-link">
+        <a href="login.html">↩ رجوع إلى تسجيل الدخول</a>
+    </div>
+    <h1>عن المقاطعة</h1>
+
+    <div class="spacer-large"></div>
+
+    <h2>لماذا يجب أن نقاطع؟</h2>
+    <p>المقاطعة هي وسيلة قوية للتعبير عن الرأي وإحداث تغيير في المجتمع. عندما نستخدم المقاطعة، نوجه رسالة واضحة للشركات أو الحكومات بأننا نرفض ممارسات معينة أو نطالب بحقوقنا بطريقة سلمية وفعالة.</p>
+
+    <div class="spacer"></div>
+
+    <h2>سلبيات عدم المقاطعة</h2>
+    <p>عندما نختار عدم المقاطعة، قد نفوت فرصة المشاركة في تغيير إيجابي. الشركات قد تستمر في ممارساتها الضارة دون رادع، مما يؤدي إلى استمرار الضرر بالمجتمع والبيئة.</p>
 </div>
-
-<div class="content-page" id="content-page">
-    <div class="header">
-        <h1>عن المقاطعة</h1>
-        <a class="footer" onclick="goBack()">رجوع إلى تسجيل الدخول</a>
-    </div>
-    <div class="section">
-        <h2>لماذا يجب أن نقاطع؟</h2>
-        <p>المقاطعة هي وسيلة قوية للتعبير عن الرأي وإحداث تغيير في المجتمع. عندما نستخدم المقاطعة، نوجه رسالة واضحة للشركات أو الحكومات بأننا نرفض ممارسات معينة أو نطالب بحقوقنا بطريقة سلمية وفعّالة.</p>
-    </div>
-    <div class="section">
-        <h2>سلبيات عدم المقاطعة</h2>
-        <p>عندما نختار عدم المقاطعة، قد نفوّت فرصة للمشاركة في تغيير إيجابي. الشركات قد تستمر في ممارساتها الضارة دون رادع، مما يؤدي إلى استمرار الضرر بالمجتمع والبيئة.</p>
-    </div>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById('login-container').style.opacity = '1';
-    });
-
-    function login() {
-        let username = document.getElementById('username').value;
-        let password = document.getElementById('password').value;
-
-        if (password.length >= 8) {
-            document.getElementById('loader').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-                document.getElementById('login-container').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('login-container').style.display = 'none';
-                    document.getElementById('content-page').style.display = 'block';
-                    document.getElementById('content-page').style.opacity = '1';
-                }, 500); 
-            }, 2000); 
-        } else {
-            alert('Invalid login credentials.');
-        }
-    }
-
-    function goBack() {
-        document.getElementById('content-page').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('content-page').style.display = 'none';
-            document.getElementById('login-container').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('login-container').style.opacity = '1';
-            }, 500);
-        }, 500);
-    }
-</script>
 
 </body>
 </html>
