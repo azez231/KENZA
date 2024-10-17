@@ -56,13 +56,94 @@
         .spacer-large {
             margin-bottom: 100px;
         }
+
+        /* Styling for the login section */
+        .login-container {
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #6C63FF;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #574bfa;
+        }
+
+        .loader {
+            display: none;
+            width: 48px;
+            height: 48px;
+            background: #d0af03;
+            border-radius: 50%;
+            --c:no-repeat linear-gradient(#000 0 0);
+            --s:15px 15px;
+            -webkit-mask:
+                var(--c) top,
+                var(--c) right,
+                var(--c) bottom,
+                var(--c) left,
+                linear-gradient(#000 0 0);
+            -webkit-mask-composite:xor;
+            mask-composite:exclude;
+            animation: l7 1.5s infinite;
+        }
+
+        @keyframes l7 {
+            0%    {-webkit-mask-size:0    0  ,0    0  ,0    0  ,0    0  ,auto}
+            12.5% {-webkit-mask-size:var(--s),0    0  ,0    0  ,0    0  ,auto}
+            25%   {-webkit-mask-size:var(--s),var(--s),0    0  ,0    0  ,auto}
+            37.5% {-webkit-mask-size:var(--s),var(--s),var(--s),0    0  ,auto}
+            45%,
+            55%   {-webkit-mask-size:var(--s),var(--s),var(--s),var(--s),auto}
+            62.5% {-webkit-mask-size:0    0  ,var(--s),var(--s),var(--s),auto}
+            75%   {-webkit-mask-size:0    0  ,0    0  ,var(--s),var(--s),auto}
+            87.5% {-webkit-mask-size:0    0  ,0    0  ,0   0   ,var(--s),auto}
+            100%  {-webkit-mask-size:0    0  ,0    0  ,0   0   ,0   0   ,auto}
+        }
+
+        /* Hidden content until login */
+        .content {
+            display: none;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
+<!-- Login Section -->
+<div class="login-container" id="login-section">
+    <h2>Kenza Login</h2>
+    <input type="text" id="username" class="input-field" placeholder="Username">
+    <input type="password" id="password" class="input-field" placeholder="Password" minlength="8">
+    <button class="button" onclick="login()">SIGN IN</button>
+    <div class="loader" id="loader"></div>
+</div>
+
+<!-- Main Content (hidden until login) -->
+<div class="container content" id="main-content">
     <div class="return-link">
-        <a href="login.html">↩ رجوع إلى تسجيل الدخول</a>
+        <a href="#" onclick="logout()">↩ رجوع إلى تسجيل الدخول</a>
     </div>
     <h1>عن المقاطعة</h1>
 
@@ -74,8 +155,32 @@
     <div class="spacer"></div>
 
     <h2>سلبيات عدم المقاطعة</h2>
-    <p>عندما نختار عدم المقاطعة، قد نفوت فرصة المشاركة في تغيير إيجابي. الشركات قد تستمر في ممارساتها الضارة دون رادع، مما يؤدي إلى استمرار الضرر بالمجتمع والبيئة.</p>
+    <p>عندما نختار عدم المقاطعة، قد نفوت فرصة المشاركة في تغيير إيجابي. الشركات قد تستمر في ممارسة ممارساتها الضارة دون رادع، مما يؤدي إلى استمرار الضرر بالمجتمع والبيئة.</p>
 </div>
+
+<script>
+    function login() {
+        let username = document.getElementById('username').value;
+        let password = document.getElementById('password').value;
+
+        if (username && password.length >= 8) {
+            document.getElementById('loader').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.title = "Kenza"; // تغيير عنوان الصفحة بعد الدخول
+            }, 2000); // مدة الانتظار 2 ثانية
+        } else {
+            alert('Invalid login credentials.');
+        }
+    }
+
+    function logout() {
+        document.getElementById('main-content').style.display = 'none';
+        document.getElementById('login-section').style.display = 'block';
+        document.title = "Kenza Login"; // إعادة العنوان
+    }
+</script>
 
 </body>
 </html>
