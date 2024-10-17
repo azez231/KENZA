@@ -269,19 +269,18 @@
         var username = document.getElementById('username').value;
         var password = document.getElementById('password').value;
         
-        if (username === "") {
-            alert("Please enter your username!");
-            return;
-        }
+        // Example credentials for testing
+        var validUsername = "user"; // Change as needed
+        var validPassword = "password123"; // Change as needed
 
-        if (password.length >= 8) {
+        if (username === validUsername && password === validPassword) {
             // Hide login page and show page 1
             document.getElementById('loginPage').classList.remove('visible');
             document.getElementById('loginPage').classList.add('hidden');
             document.getElementById('page1').classList.remove('hidden');
             document.getElementById('page1').classList.add('visible');
         } else {
-            alert("Password must be at least 8 characters long!");
+            alert("Invalid username or password. Please try again.");
         }
     }
 
