@@ -18,6 +18,7 @@
 
         body {
             font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevents scroll bars */
         }
 
         .overlay {
@@ -27,8 +28,8 @@
             right: 0;
             bottom: 0;
             height: 100%;
-            z-index: -10;
             background-color: var(--contrast-color);
+            z-index: -1; /* Moved z-index to the last */
         }
 
         .container {
@@ -268,6 +269,11 @@
         var username = document.getElementById('username').value;
         var password = document.getElementById('password').value;
         
+        if (username === "") {
+            alert("Please enter your username!");
+            return;
+        }
+
         if (password.length >= 8) {
             // Hide login page and show page 1
             document.getElementById('loginPage').classList.remove('visible');
