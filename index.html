@@ -203,9 +203,8 @@
 
         .footer {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            padding: 10px;
+            bottom: 10px;
+            left: 10px;
             color: var(--highlight-color);
             font-size: 14px;
         }
@@ -306,52 +305,11 @@
     </div>
 </div>
 
+<div class="overlay"></div>
+
+<!-- Footer -->
 <div class="footer">
     To send some suggestions to support me (<a href="mailto:dearthanks@jamil.com">dearthanks@jamil.com</a>)
     <div class="footer-menu">
         <button onclick="reportIssue('The site is slow')">الموقع بطيء</button>
         <button onclick="reportIssue('There are some errors on the site')">الموقع فيه بعض الأخطاء</button>
-        <button onclick="reportIssue('Report a user')">الإبلاغ عن المستخدم</button>
-    </div>
-    <div class="thank-you-message" id="thankYouMessage">Thank you for your feedback!</div>
-</div>
-
-<script>
-    function validateLogin() {
-        var username = document.getElementById('username').value;
-        var password = document.getElementById('password').value;
-        if (password.length >= 8) {
-            goToPage1();
-        } else {
-            alert('Password must be at least 8 characters long');
-        }
-    }
-
-    function goToPage1() {
-        document.getElementById('loginPage').classList.add('hidden');
-        document.getElementById('page1').classList.remove('hidden');
-        document.getElementById('page1').classList.add('visible');
-    }
-
-    function goToPage2() {
-        document.getElementById('page1').classList.add('hidden');
-        document.getElementById('page2').classList.remove('hidden');
-        document.getElementById('page2').classList.add('visible');
-    }
-
-    function goToPage1() {
-        document.getElementById('page2').classList.add('hidden');
-        document.getElementById('page1').classList.remove('hidden');
-        document.getElementById('page1').classList.add('visible');
-    }
-
-    function reportIssue(issue) {
-        document.getElementById('thankYouMessage').classList.add('visible');
-        setTimeout(function() {
-            document.getElementById('thankYouMessage').classList.remove('visible');
-        }, 3000);
-    }
-</script>
-
-</body>
-</html>
