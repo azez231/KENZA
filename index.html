@@ -199,6 +199,24 @@
             color: var(--contrast-color);
             transition: 0.3s;
         }
+
+        /* Loading screen styling */
+        .loading-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--secondary-color);
+            color: #fff;
+            font-size: 24px;
+            flex-direction: column;
+        }
+
+        .loading-screen img {
+            width: 150px;
+            height: 150px;
+        }
+
     </style>
 </head>
 <body>
@@ -211,6 +229,12 @@
         <input type="password" id="password" placeholder="Password (8+ characters)">
         <button onclick="validateLogin()">Login</button>
     </div>
+</div>
+
+<!-- Loading Screen -->
+<div class="loading-screen hidden" id="loadingScreen">
+    <img src="/mnt/data/A_loading_screen_with_a_hand-drawn_style_clock_and.png" alt="Loading">
+    <p>Loading...</p>
 </div>
 
 <!-- Page 1: Hello World Page -->
@@ -269,13 +293,21 @@
         var password = document.getElementById('password').value;
         
         if (password.length >= 8) {
-            // Hide login page and show page 1
+            // Hide login page and show loading screen
             document.getElementById('loginPage').classList.remove('visible');
             document.getElementById('loginPage').classList.add('hidden');
-            document.getElementById('page1').classList.remove('hidden');
-            document.getElementById('page1').classList.add('visible');
+            document.getElementById('loadingScreen').classList.remove('hidden');
+            document.getElementById('loadingScreen').classList.add('visible');
+            
+            // Simulate loading delay, then show page 1
+            setTimeout(function() {
+                document.getElementById('loadingScreen').classList.remove('visible');
+                document.getElementById('loadingScreen').classList.add('hidden');
+                document.getElementById('page1').classList.remove('hidden');
+                document.getElementById('page1').classList.add('visible');
+            }, 3000); // 3 second delay
         } else {
-            alert("Password must be at least 8 characters long!");
+            alert('Password must be at least 8 characters long.');
         }
     }
 
