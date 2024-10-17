@@ -8,19 +8,22 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
-        .login-container {
+        .login-container, .content-page {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background-color: #ffffff;
             padding: 20px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             text-align: center;
             width: 300px;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         h2 {
             color: #333;
@@ -83,16 +86,22 @@
             border-radius: 10px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
             width: 80%;
-            margin: auto;
             max-width: 900px;
+            margin: auto;
         }
-        .header {
-            text-align: right;
-            margin-bottom: 20px;
+        .header, .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .header h1 {
             font-size: 32px;
             color: #333;
+        }
+        .footer a {
+            color: #6C63FF;
+            cursor: pointer;
+            text-decoration: underline;
         }
         .section {
             margin-bottom: 30px;
@@ -108,7 +117,7 @@
 </head>
 <body>
 
-<div class="login-container">
+<div class="login-container" id="login-container">
     <h2>Kenza Login</h2>
     <input type="text" id="username" class="input-field" placeholder="Username">
     <input type="password" id="password" class="input-field" placeholder="Password" minlength="8">
@@ -119,6 +128,7 @@
 <div class="content-page" id="content-page">
     <div class="header">
         <h1>عن المقاطعة</h1>
+        <a class="footer" onclick="goBack()">رجوع إلى تسجيل الدخول</a>
     </div>
     <div class="section">
         <h2>لماذا يجب أن نقاطع؟</h2>
@@ -131,20 +141,39 @@
 </div>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('login-container').style.opacity = '1';
+    });
+
     function login() {
         let username = document.getElementById('username').value;
         let password = document.getElementById('password').value;
 
-        if ((username === 'Sultan' || username === 'Mohammed' || username === 'AZEZ') && password.length >= 8) {
+        if (password.length >= 8) {
             document.getElementById('loader').style.display = 'block';
             setTimeout(() => {
                 document.getElementById('loader').style.display = 'none';
-                document.querySelector('.login-container').style.display = 'none';
-                document.getElementById('content-page').style.display = 'block';
-            }, 2000); // simulating a loading time of 2 seconds
+                document.getElementById('login-container').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('login-container').style.display = 'none';
+                    document.getElementById('content-page').style.display = 'block';
+                    document.getElementById('content-page').style.opacity = '1';
+                }, 500); 
+            }, 2000); 
         } else {
             alert('Invalid login credentials.');
         }
+    }
+
+    function goBack() {
+        document.getElementById('content-page').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('content-page').style.display = 'none';
+            document.getElementById('login-container').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('login-container').style.opacity = '1';
+            }, 500);
+        }, 500);
     }
 </script>
 
