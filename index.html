@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration and Login</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap">
     <style>
         * {
             margin: 0;
@@ -11,94 +12,129 @@
             box-sizing: border-box;
         }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Jost', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
         }
-        .container {
-            width: 300px;
-            padding: 20px;
-            background-color: #fff;
+        .main {
+            width: 350px;
+            height: 500px;
+            background: url("https://images.unsplash.com/photo-1517911041065-4960862d38f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80") no-repeat center/cover;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 5px 20px 50px #000;
+            overflow: hidden;
+        }
+        #chk {
+            display: none;
+        }
+        .signup, .login {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
             text-align: center;
         }
-        h2 {
-            margin-bottom: 20px;
+        label {
+            color: #fff;
+            font-size: 2.3em;
+            justify-content: center;
+            display: flex;
+            margin: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .5s ease-in-out;
         }
         input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
+            width: 60%;
+            height: 40px;
+            background: #e0dede;
+            justify-content: center;
+            display: flex;
+            margin: 20px auto;
+            padding: 12px;
+            border: none;
+            outline: none;
             border-radius: 5px;
         }
         button {
-            width: 100%;
-            padding: 10px;
-            background-color: #28a745;
+            width: 60%;
+            height: 40px;
+            margin: 10px auto;
+            justify-content: center;
+            display: block;
             color: #fff;
+            background: #573b8a;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 30px;
+            outline: none;
             border: none;
             border-radius: 5px;
+            transition: .2s ease-in;
             cursor: pointer;
         }
         button:hover {
-            background-color: #218838;
+            background: #6d44b8;
         }
-        .link {
-            margin-top: 10px;
-            display: block;
-            color: #007bff;
-            cursor: pointer;
+        .login {
+            height: 460px;
+            background: #eee;
+            border-radius: 60% / 10%;
+            transform: translateY(-180px);
+            transition: .8s ease-in-out;
         }
-        .link:hover {
-            text-decoration: underline;
+        .login label {
+            color: #573b8a;
+            transform: scale(.6);
         }
-        .message {
-            color: green;
-            margin-top: 10px;
+        #chk:checked ~ .login {
+            transform: translateY(-500px);
+        }
+        #chk:checked ~ .login label {
+            transform: scale(1);
+        }
+        #chk:checked ~ .signup label {
+            transform: scale(.6);
         }
     </style>
 </head>
 <body>
-    <div class="container" id="loginContainer">
-        <h2>Login</h2>
-        <input type="text" id="loginUsername" placeholder="Username">
-        <input type="password" id="loginPassword" placeholder="Password">
-        <button onclick="validateLogin()">Login</button>
-        <span class="link" onclick="showRegister()">Not registered? Create account</span>
-    </div>
+    <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
 
-    <div class="container" id="registerContainer" style="display: none;">
-        <h2>Create Account</h2>
-        <input type="text" id="registerUsername" placeholder="Username">
-        <input type="password" id="registerPassword" placeholder="Password">
-        <input type="password" id="confirmPassword" placeholder="Confirm Password">
-        <input type="text" id="accountCode" placeholder="Code for your account">
-        <button onclick="createAccount()">Register</button>
+        <div class="signup">
+            <form>
+                <label for="chk" aria-hidden="true">Sign up</label>
+                <input type="text" name="username" placeholder="User name" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+                <input type="text" name="accountCode" placeholder="Code for your account" required>
+                <button type="button" onclick="createAccount()">Sign up</button>
+                <p id="registerMessage" style="color: green;"></p>
+            </form>
+        </div>
+
+        <div class="login">
+            <form>
+                <label for="chk" aria-hidden="true">Login</label>
+                <input type="text" id="loginUsername" placeholder="Username" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="button" onclick="validateLogin()">Login</button>
+            </form>
+        </div>
     </div>
 
     <script>
-        function showRegister() {
-            document.getElementById('loginContainer').style.display = 'none';
-            document.getElementById('registerContainer').style.display = 'block';
-        }
-
-        function showLogin() {
-            document.getElementById('loginContainer').style.display = 'block';
-            document.getElementById('registerContainer').style.display = 'none';
-        }
-
         function validateLogin() {
+            var username = document.getElementById('loginUsername').value;
+            var password = document.getElementById('loginPassword').value;
+
             // Example credentials for testing
             var validUsername = "testuser";
             var validPassword = "testpassword";
-
-            var username = document.getElementById('loginUsername').value;
-            var password = document.getElementById('loginPassword').value;
 
             if (username === validUsername && password === validPassword) {
                 alert("Login successful!");
@@ -108,19 +144,16 @@
         }
 
         function createAccount() {
-            var username = document.getElementById('registerUsername').value;
-            var password = document.getElementById('registerPassword').value;
-            var confirmPassword = document.getElementById('confirmPassword').value;
-            var accountCode = document.getElementById('accountCode').value;
+            var username = document.getElementsByName('username')[0].value;
+            var password = document.getElementsByName('password')[0].value;
+            var confirmPassword = document.getElementsByName('confirmPassword')[0].value;
+            var accountCode = document.getElementsByName('accountCode')[0].value;
 
             if (password === confirmPassword) {
-                alert("Account created successfully!");
-                document.getElementById('registerContainer').innerHTML = '<p class="message">Account created successfully!</p>';
-                setTimeout(showLogin, 2000); // Redirect to login page after 2 seconds
+                document.getElementById('registerMessage').innerText = "Account created successfully!";
+                setTimeout(function() {
+                    document.getElementById('chk').checked = false;
+                    document.getElementById('registerMessage').innerText = "";
+                }, 2000);
             } else {
-                alert("Passwords do not match. Please try again.");
-            }
-        }
-    </script>
-</body>
-</html>
+                alert("Passwords
