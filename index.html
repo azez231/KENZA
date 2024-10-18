@@ -87,6 +87,11 @@
             document.getElementById('registerContainer').style.display = 'block';
         }
 
+        function showLogin() {
+            document.getElementById('loginContainer').style.display = 'block';
+            document.getElementById('registerContainer').style.display = 'none';
+        }
+
         function validateLogin() {
             // Example credentials for testing
             var validUsername = "testuser";
@@ -111,6 +116,7 @@
             if (password === confirmPassword) {
                 alert("Account created successfully!");
                 document.getElementById('registerContainer').innerHTML = '<p class="message">Account created successfully!</p>';
+                setTimeout(showLogin, 2000); // Redirect to login page after 2 seconds
             } else {
                 alert("Passwords do not match. Please try again.");
             }
