@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration and Login</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap">
+    <title>Slide Navbar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -22,7 +22,7 @@
         .main {
             width: 350px;
             height: 500px;
-            background: url("https://images.unsplash.com/photo-1517911041065-4960862d38f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80") no-repeat center/cover;
+            background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/cover;
             border-radius: 10px;
             box-shadow: 5px 20px 50px #000;
             overflow: hidden;
@@ -30,12 +30,30 @@
         #chk {
             display: none;
         }
-        .signup, .login {
+        .signup {
             position: relative;
             width: 100%;
             height: 100%;
-            padding: 20px;
-            text-align: center;
+        }
+        .login {
+            height: 460px;
+            background: #eee;
+            border-radius: 60% / 10%;
+            transform: translateY(-180px);
+            transition: .8s ease-in-out;
+        }
+        .login label {
+            color: #573b8a;
+            transform: scale(.6);
+        }
+        #chk:checked ~ .login {
+            transform: translateY(-500px);
+        }
+        #chk:checked ~ .login label {
+            transform: scale(1);
+        }
+        #chk:checked ~ .signup label {
+            transform: scale(.6);
         }
         label {
             color: #fff;
@@ -49,12 +67,12 @@
         }
         input {
             width: 60%;
-            height: 40px;
+            height: 20px;
             background: #e0dede;
             justify-content: center;
             display: flex;
             margin: 20px auto;
-            padding: 12px;
+            padding: 15px;
             border: none;
             outline: none;
             border-radius: 5px;
@@ -79,26 +97,6 @@
         button:hover {
             background: #6d44b8;
         }
-        .login {
-            height: 460px;
-            background: #eee;
-            border-radius: 60% / 10%;
-            transform: translateY(-180px);
-            transition: .8s ease-in-out;
-        }
-        .login label {
-            color: #573b8a;
-            transform: scale(.6);
-        }
-        #chk:checked ~ .login {
-            transform: translateY(-500px);
-        }
-        #chk:checked ~ .login label {
-            transform: scale(1);
-        }
-        #chk:checked ~ .signup label {
-            transform: scale(.6);
-        }
     </style>
 </head>
 <body>
@@ -108,52 +106,22 @@
         <div class="signup">
             <form>
                 <label for="chk" aria-hidden="true">Sign up</label>
-                <input type="text" name="username" placeholder="User name" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
-                <input type="text" name="accountCode" placeholder="Code for your account" required>
-                <button type="button" onclick="createAccount()">Sign up</button>
-                <p id="registerMessage" style="color: green;"></p>
+                <input type="text" name="txt" placeholder="User name" required="">
+                <input type="email" name="email" placeholder="Email" required="">
+                <input type="number" name="broj" placeholder="Phone Number" required="">
+                <input type="password" name="pswd" placeholder="Password" required="">
+                <button>Sign up</button>
             </form>
         </div>
 
         <div class="login">
             <form>
                 <label for="chk" aria-hidden="true">Login</label>
-                <input type="text" id="loginUsername" placeholder="Username" required>
-                <input type="password" id="loginPassword" placeholder="Password" required>
-                <button type="button" onclick="validateLogin()">Login</button>
+                <input type="email" name="email" placeholder="Email" required="">
+                <input type="password" name="pswd" placeholder="Password" required="">
+                <button>Login</button>
             </form>
         </div>
     </div>
-
-    <script>
-        function validateLogin() {
-            var username = document.getElementById('loginUsername').value;
-            var password = document.getElementById('loginPassword').value;
-
-            // Example credentials for testing
-            var validUsername = "testuser";
-            var validPassword = "testpassword";
-
-            if (username === validUsername && password === validPassword) {
-                alert("Login successful!");
-            } else {
-                alert("Invalid username or password. Please try again.");
-            }
-        }
-
-        function createAccount() {
-            var username = document.getElementsByName('username')[0].value;
-            var password = document.getElementsByName('password')[0].value;
-            var confirmPassword = document.getElementsByName('confirmPassword')[0].value;
-            var accountCode = document.getElementsByName('accountCode')[0].value;
-
-            if (password === confirmPassword) {
-                document.getElementById('registerMessage').innerText = "Account created successfully!";
-                setTimeout(function() {
-                    document.getElementById('chk').checked = false;
-                    document.getElementById('registerMessage').innerText = "";
-                }, 2000);
-            } else {
-                alert("Passwords
+</body>
+</html>
